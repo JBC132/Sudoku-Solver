@@ -14,7 +14,18 @@ def is_valid(puzzle, guess, row, col):
         return False
     
     col_vals = [puzzle[i][col] for i in range(9)]
+    if guess in col_vals:
+        return False
+    
+    row_start = (row // 3) * 3
+    col_start = (col // 3) * 3
 
+    for r in range(row_start, row_start + 3):
+        for c in range(col_start, col_start + 3):
+            if puzzle[r][c] == guess:
+                return False
+            
+    return True
 
 def solve_sudoku(puzzle):
 
@@ -25,4 +36,8 @@ def solve_sudoku(puzzle):
     
     for guess in range(1,10):
         if is_valid(puzzle, guess, row, col):
-            pass
+            puzzle[row][col] = guess
+            if solve_sudoku(puzzle):
+                return True
+        
+        puzzle[row][col] = -1
