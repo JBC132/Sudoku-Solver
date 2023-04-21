@@ -3,10 +3,10 @@
 Created Sudoku Solver using Python3
 
 ![](Before.png)
-Before
+<--Before
 
 ![](After.png)
-After
+<--After
 
 ## Dependency
 
